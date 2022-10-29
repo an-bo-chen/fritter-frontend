@@ -1,6 +1,9 @@
-import type {Request, Response} from 'express';
+import type { Request, Response } from 'express';
 import express from 'express';
 import FreetCollection from '../freet/collection';
+import AnonymousUserCollection from '../anonymous-user/collection';
+import AnonymousFreetCollection from '../anonymous-freet/collection';
+import AnonymousModeCollection from '../anonymous-fritter-mode/collection';
 import UserCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as util from './util';
@@ -9,8 +12,6 @@ const router = express.Router();
 
 /**
  * Get the signed in user
- * TODO: may need better route and documentation
- * (so students don't accidentally delete this when copying over)
  *
  * @name GET /api/users/session
  *
@@ -108,6 +109,8 @@ router.post(
   async (req: Request, res: Response) => {
     const user = await UserCollection.addOne(req.body.username, req.body.password);
     req.session.userId = user._id.toString();
+    await AnonymousUserCollection.addOne(user._id); // create an associated anonymous user for user
+    await AnonymousModeCollection.addOne(user._id); // create an associated anonymous mode oject for user
     res.status(201).json({
       message: `Your account was created successfully. You have been logged in as ${user.username}`,
       user: util.constructUserResponse(user)
@@ -160,8 +163,12 @@ router.delete(
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
+    const anonymousUserId = (await AnonymousUserCollection.findOneByPublicUserId(userId))._id;
     await UserCollection.deleteOne(userId);
-    await FreetCollection.deleteMany(userId);
+    await AnonymousUserCollection.deleteOne(userId); // delete associated anonymous user
+    await AnonymousModeCollection.deleteOne(userId); // delete associated anonymous mode object
+    await FreetCollection.deleteMany(userId); // delete all freets associated with user
+    await AnonymousFreetCollection.deleteMany(anonymousUserId); // delete all anonymous freets associated with anonymous user
     req.session.userId = undefined;
     res.status(200).json({
       message: 'Your account has been deleted successfully.'
@@ -169,4 +176,4 @@ router.delete(
   }
 );
 
-export {router as userRouter};
+export { router as userRouter };

@@ -1,4 +1,4 @@
-import type {NextFunction, Request, Response} from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import express from 'express';
 import FreetCollection from './collection';
 import * as userValidator from '../user/middleware';
@@ -79,7 +79,7 @@ router.post(
 /**
  * Delete a freet
  *
- * @name DELETE /api/freets/:id
+ * @name DELETE /api/freets/:freetId
  *
  * @return {string} - A success message
  * @throws {403} - If the user is not logged in or is not the author of
@@ -104,7 +104,7 @@ router.delete(
 /**
  * Modify a freet
  *
- * @name PATCH /api/freets/:id
+ * @name PATCH /api/freets/:freetId
  *
  * @param {string} content - the new content for the freet
  * @return {FreetResponse} - the updated freet
@@ -131,4 +131,4 @@ router.patch(
   }
 );
 
-export {router as freetRouter};
+export { router as freetRouter };
