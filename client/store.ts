@@ -5,13 +5,14 @@ import createPersistedState from 'vuex-persistedstate';
 Vue.use(Vuex);
 
 /**
- * Storage for data that needs to be accessed from various compoentns.
+ * Storage for data that needs to be accessed from various components.
  */
 const store = new Vuex.Store({
   state: {
     filter: null, // Username to filter shown freets by (null = show all)
     freets: [], // All freets created in the app
     username: null, // Username of the logged in user
+    isAnonymousMode: null, // true if Anonymous Mode and Public Mode otherwise
     alerts: {} // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
@@ -30,6 +31,13 @@ const store = new Vuex.Store({
        * @param username - new username to set
        */
       state.username = username;
+    },
+    setMode(state, mode) {
+      /**
+       * Update the stored mode to the specified one.
+       * @param mode - new mode to set
+       */
+      state.isAnonymousMode = mode;
     },
     updateFilter(state, filter) {
       /**

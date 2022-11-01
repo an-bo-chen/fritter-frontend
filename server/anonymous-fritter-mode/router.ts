@@ -30,7 +30,7 @@ router.get(
         const anonymousMode = await AnonymousModeCollection.findOne(user._id);
         res.status(200).json({
             message: 'You have sucessfully found the mode of the given user!',
-            response: util.constructAnonymousModeResponse(anonymousMode)
+            mode: util.constructAnonymousModeResponse(anonymousMode)
         });
     }
 );
@@ -54,7 +54,7 @@ router.patch(
         anonymousModeValidator.isAuthorExists
     ],
     async (req: Request, res: Response) => {
-        const mode = JSON.parse(req.body.mode as string)["mode"];
+        const mode = JSON.parse(req.body.mode);
         const user = await UserCollection.findOneByUsername(req.params.username as string);
         const anonymousMode = await AnonymousModeCollection.updateOne(user._id, mode);
         res.status(200).json({

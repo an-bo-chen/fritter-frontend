@@ -22,6 +22,15 @@ export default {
       this.$store.commit('setUsername', user ? user.username : null);
     });
 
+    if (this.$store.state.username) {
+      fetch(`/api/anonymousMode/${this.$store.state.username}`, {
+        credentials: 'same-origin'
+      }).then(res => res.json()).then(res => {
+        const mode = res.mode.isAnonymousMode;
+        this.$store.commit('setMode', mode);
+      });
+    }
+
     // Clear alerts on page refresh
     this.$store.state.alerts = {};
   }
