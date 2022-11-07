@@ -7,10 +7,10 @@
   >
     <header>
       <h3 class="author">
-        @{{ freet.author }}
+        @anonymous_user
       </h3>
       <div
-        v-if="$store.state.username === freet.author"
+        v-if="$store.state.anonymousUserId === anonymousFreet.anonymousAuthorId"
         class="actions"
       >
         <button
@@ -46,11 +46,11 @@
       v-else
       class="content"
     >
-      {{ freet.content }}
+      {{ anonymousFreet.content }}
     </p>
     <p class="info">
-      Posted at {{ freet.dateModified }}
-      <i v-if="freet.dateModified !== freet.dateCreated">(edited)</i>
+      Posted at {{ anonymousFreet.dateModified }}
+      <i v-if="anonymousFreet.dateModified !== anonymousFreet.dateCreated">(edited)</i>
     </p>
     <section class="alerts">
       <article
@@ -66,45 +66,45 @@
 
 <script>
 export default {
-  name: 'FreetComponent',
+  name: 'AnonymousFreetComponent',
   props: {
-    // Data from the stored freet
-    freet: {
+    // Data from the stored anonymous freet
+    anonymousFreet: {
       type: Object,
       required: true
     }
   },
   data() {
     return {
-      editing: false, // Whether or not this freet is in edit mode
-      draft: this.freet.content, // Potentially-new content for this freet
-      alerts: {} // Displays success/error messages encountered during freet modification
+      editing: false, // Whether or not this anonymous freet is in edit mode
+      draft: this.anonymousFreet.content, // Potentially-new content for this anonymous freet
+      alerts: {} // Displays success/error messages encountered during anonymous freet modification
     };
   },
   methods: {
     startEditing() {
       /**
-       * Enables edit mode on this freet.
+       * Enables edit mode on this anonymous freet.
        */
       this.editing = true; // Keeps track of if a freet is being edited
-      this.draft = this.freet.content; // The content of our current "draft" while being edited
+      this.draft = this.anonymousFreet.content; // The content of our current "draft" while being edited
     },
     stopEditing() {
       /**
-       * Disables edit mode on this freet.
+       * Disables edit mode on this anonymous freet.
        */
       this.editing = false;
-      this.draft = this.freet.content;
+      this.draft = this.anonymousFreet.content;
     },
     deleteFreet() {
       /**
-       * Deletes this freet.
+       * Deletes this anonymous freet.
        */
       const params = {
         method: 'DELETE',
         callback: () => {
           this.$store.commit('alert', {
-            message: 'Successfully deleted freet!', status: 'success'
+            message: 'Successfully deleted anonymous freet!', status: 'success'
           });
         }
       };
@@ -112,10 +112,10 @@ export default {
     },
     submitEdit() {
       /**
-       * Updates freet to have the submitted draft content.
+       * Updates anonymous freet to have the submitted draft content.
        */
-      if (this.freet.content === this.draft) {
-        const error = 'Error: Edited freet content should be different than current freet content.';
+      if (this.anonymousFreet.content === this.draft) {
+        const error = 'Error: Edited anonymous freet content should be different than current anonymous freet content.';
         this.$set(this.alerts, error, 'error'); // Set an alert to be the error text, timeout of 3000 ms
         setTimeout(() => this.$delete(this.alerts, error), 3000);
         return;
@@ -123,7 +123,7 @@ export default {
 
       const params = {
         method: 'PATCH',
-        message: 'Successfully edited freet!',
+        message: 'Successfully edited anonymous freet!',
         body: JSON.stringify({content: this.draft}),
         callback: () => {
           this.$set(this.alerts, params.message, 'success');
@@ -147,14 +147,14 @@ export default {
       }
 
       try {
-        const r = await fetch(`/api/freets/${this.freet._id}`, options);
+        const r = await fetch(`/api/anonymousFreets/${this.anonymousFreet._id}`, options);
         if (!r.ok) {
           const res = await r.json();
           throw new Error(res.error);
         }
 
         this.editing = false;
-        this.$store.commit('refreshFreets');
+        this.$store.commit('refreshAnonymousFreets');
         this.$emit('updateProfile');
 
         params.callback();

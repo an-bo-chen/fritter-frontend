@@ -56,9 +56,11 @@ router.post(
       req.body.username, req.body.password
     );
     req.session.userId = user._id.toString();
+    const anonymousUser = await AnonymousUserCollection.findOneByPublicUserId(user._id);
     res.status(201).json({
       message: 'You have logged in successfully',
-      user: util.constructUserResponse(user)
+      user: util.constructUserResponse(user),
+      anonymousUserId: anonymousUser._id
     });
   }
 );

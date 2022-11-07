@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import FreetsPage from './components/Freet/FreetsPage.vue';
+import AnonymousFreetsPage from './components/AnonymousFreet/AnonymousFreetsPage.vue';
 import FollowPage from './components/Follow/FollowPage.vue';
-import FollowingPage from './components/Follow/viewFollowingPage.vue';
-import FollowersPage from './components/Follow/viewFollowersPage.vue';
+import FollowingPage from './components/Follow/ViewFollowingPage.vue';
+import FollowersPage from './components/Follow/ViewFollowersPage.vue';
 import ProfilePage from './components/Profile/ProfilePage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
@@ -14,6 +15,7 @@ Vue.use(VueRouter);
 const routes = [
   {path: '/', name: 'Home', component: FreetsPage},
   {path: '/follow', name: 'Follow', component: FollowPage},
+  {path: '/anonymousFreets', name: 'Test', component: AnonymousFreetsPage},
   {path: '/profile', name: 'Profile', component: ProfilePage},
   {path: '/profile/following', name: 'Following', component: FollowingPage},
   {path: '/profile/followers', name: 'Followers', component: FollowersPage},

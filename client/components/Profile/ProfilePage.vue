@@ -1,11 +1,14 @@
 <template>
     <main>
         <section>
-            <header>
+            <header v-if="$store.state.isAnonymousMode">
+                <h2>@anonymous_user</h2>
+            </header>
+            <header v-else>
                 <h2>@{{$store.state.username}}</h2>
             </header>
         </section>
-        <section>
+        <section v-if="!$store.state.isAnonymousMode">
             <router-link 
                 to="/profile/following"
             >
@@ -19,14 +22,36 @@
         </section>
         <section>
             <header v-if="$store.state.isAnonymousMode">
-                <h2>Anonymous Mode</h2>
+                <h2>You are currently in Anonymous Mode</h2>
             </header>
             <header v-else>
-                <h2>Public Mode</h2>
+                <h2>You are currently in Public Mode</h2>
             </header>
             <ToggleAnonymousMode />
         </section>
-        <section>
+        <section
+            v-if="$store.state.isAnonymousMode"
+        >
+            <h2>Your Posts</h2>
+                <section
+                    v-if="anonymousFreets.length"
+                >
+                <AnonymousFreetComponent
+                    v-for="anonymousFreet in anonymousFreets"
+                    :key="anonymousFreet.id"
+                    :anonymousFreet="anonymousFreet"
+                    @updateProfile="loadAnonymousFreets"
+                />
+                </section>
+                <article
+                    v-else
+                >
+                    <h3>Create a new post!</h3>
+                </article>
+        </section>
+        <section 
+            v-else
+        >
             <h2>Your Posts</h2>
             <section
                 v-if="freets.length"
@@ -35,6 +60,7 @@
                     v-for="freet in freets"
                     :key="freet.id"
                     :freet="freet"
+                    @updateProfile="loadFreets"
                 />
             </section>
             <article
@@ -48,6 +74,7 @@
 
 <script>
 import FreetComponent from '@/components/Freet/FreetComponent.vue';
+import AnonymousFreetComponent from '@/components/AnonymousFreet/AnonymousFreetComponent.vue';
 import FollowComponent from '@/components/Follow/FollowComponent.vue';
 import ToggleAnonymousMode from '@/components/AnonymousMode/ToggleAnonymousMode.vue';
 
@@ -55,16 +82,19 @@ export default {
     name: 'ProfilePage',
     components: {
         FreetComponent,
+        AnonymousFreetComponent,
         FollowComponent,
         ToggleAnonymousMode
     },
     data() {
         return {
             freets: [],
+            anonymousFreets: []
         };
     },
     created() {
         this.loadFreets(),
+        this.loadAnonymousFreets(),
         this.loadFollowing(),
         this.loadFollowers()
     },
@@ -78,6 +108,20 @@ export default {
                 }
 
                 this.freets = res;
+            } catch (e) {
+                this.$set(this.alerts, e, 'error');
+                setTimeout(() => this.$delete(this.alerts, e), 3000);
+            }
+        },
+        async loadAnonymousFreets() {
+            try {
+                const r = await fetch(`/api/anonymousFreets?authorId=${this.$store.state.anonymousUserId}`);
+                const res = await r.json();
+                if (!r.ok) {
+                    throw new Error(res.error);
+                }
+
+                this.anonymousFreets = res;
             } catch (e) {
                 this.$set(this.alerts, e, 'error');
                 setTimeout(() => this.$delete(this.alerts, e), 3000);

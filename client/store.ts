@@ -11,8 +11,10 @@ const store = new Vuex.Store({
   state: {
     filter: null, // Username to filter shown freets by (null = show all)
     freets: [], // All freets created in the app
+    anonymousFreets: [], // All anonymous freets created in the app
     feed: [], // Feed for the logged in user
     username: null, // Username of the logged in user
+    anonymousUserId: null, // Id of the associated anonymous user
     following: [], // users that the logged in user is following
     followers: [], // users that follow the logged in user
     whoToFollow: [], // users that the logged in user does not currently follow
@@ -54,16 +56,31 @@ const store = new Vuex.Store({
       /**
        * Request the server for the currently available freets.
        */
-      const url = state.filter ? `/api/users/${state.filter}/freets` : '/api/freets';
+      const url = state.filter ? `/api/freets?author=${state.filter}` : '/api/freets';
       const res = await fetch(url).then(async r => r.json());
       state.freets = res;
     },
-    setMode(state, mode) {
+    setAnonymousUserId(state, anonymousUserId) {
       /**
-       * Update the stored mode to the specified one.
-       * @param mode - new mode to set
+       * Update the stored anonymousUserId to the specified one.
+       * @param anonymousUserId - new anonymousUserId to set
        */
-      state.isAnonymousMode = mode;
+       state.anonymousUserId = anonymousUserId;
+    },
+    updateAnonymousFreets(state, anonymousFreets) {
+      /**
+       * Update the stored anonymous freets to the provided anonymous freets.
+       * @param anonymousFreets - Anonymous freets to store
+       */
+      state.anonymousFreets = anonymousFreets;
+    },
+    async refreshAnonymousFreets(state) {
+      /**
+       * Request the server for the currently available anonymous freets.
+       */
+      const url = '/api/anonymousFreets';
+      const res = await fetch(url).then(async r => r.json());
+      state.anonymousFreets = res;
     },
     updateFollowing(state, following) {
       /**
@@ -74,7 +91,7 @@ const store = new Vuex.Store({
     },
     async refreshFollowing(state) {
       /**
-       * Request the server for the currently following of user.
+       * Request the server for the users currently following the logged in user.
        */
       const url = '/api/follows/following';
       const res = await fetch(url).then(async r => r.json());
@@ -88,10 +105,20 @@ const store = new Vuex.Store({
       state.followers = followers;
     },
     async refreshWhoToFollow(state) {
+      /**
+       * Request the server for the users currently not following the logged in user.
+       */
       const url = `/api/follows/notfollowing`;
       const res = await fetch(url).then(async r => r.json());
       state.whoToFollow = res;
-    }
+    },
+    setMode(state, mode) {
+      /**
+       * Update the stored mode to the specified one.
+       * @param mode - new mode to set
+       */
+      state.isAnonymousMode = mode;
+    },
   },
   // Store data across page refreshes, only discard on browser close
   plugins: [createPersistedState()]
