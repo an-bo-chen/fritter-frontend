@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     filter: null, // Username to filter shown freets by (null = show all)
     freets: [], // All freets created in the app
     anonymousFreets: [], // All anonymous freets created in the app
+    feedFilter: null, // Username to filter shown feed by (null = show all)
     feed: [], // Feed for the logged in user
     username: null, // Username of the logged in user
     anonymousUserId: null, // Id of the associated anonymous user
@@ -59,6 +60,29 @@ const store = new Vuex.Store({
       const url = state.filter ? `/api/freets?author=${state.filter}` : '/api/freets';
       const res = await fetch(url).then(async r => r.json());
       state.freets = res;
+    },
+    updateFeedFilter(state, feedFilter) {
+      /**
+       * Update the stored feed filter to the specified one.
+       * @param feedFilter - Username of the user to fitler feed by
+       */
+      state.feedFilter = feedFilter;
+    },
+    updateFeed(state, feed) {
+      /**
+       * Update the stored feed to the provided feed.
+       * @param feed - Feed to store
+       */
+      state.feed = feed;
+    },
+    async refreshFeed(state) {
+      /**
+       * Request the server for the currently available feed.
+       */
+      const url = state.feedFilter ? `/api/freets?author=${state.feedFilter}` : '/api/freets';
+      const res = await fetch(url).then(async r => r.json());
+      const feed = state.feedFilter? res : res.feed;
+      state.feed = feed;
     },
     setAnonymousUserId(state, anonymousUserId) {
       /**

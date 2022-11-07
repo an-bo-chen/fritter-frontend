@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import FreetsPage from './components/Freet/FreetsPage.vue';
+import HomePage from './components/Freet/HomePage.vue';
+import FeedPage from './components/Freet/FeedPage.vue';
 import AnonymousFreetsPage from './components/AnonymousFreet/AnonymousFreetsPage.vue';
 import FollowPage from './components/Follow/FollowPage.vue';
 import FollowingPage from './components/Follow/ViewFollowingPage.vue';
@@ -13,7 +14,8 @@ import NotFound from './NotFound.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/', name: 'Home', component: FreetsPage},
+  {path: '/', name: 'Home', component: HomePage},
+  {path: '/feed', name: 'Explore', component: FeedPage},
   {path: '/follow', name: 'Follow', component: FollowPage},
   {path: '/anonymousFreets', name: 'Test', component: AnonymousFreetsPage},
   {path: '/profile', name: 'Profile', component: ProfilePage},

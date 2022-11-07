@@ -16,6 +16,12 @@
       </router-link>
       <router-link 
         v-if="$store.state.username"
+        to="/feed"
+      >
+        Feed
+      </router-link>
+      <router-link 
+        v-if="$store.state.username"
         to="/anonymousFreets">
         Anonymous Freets
       </router-link>
