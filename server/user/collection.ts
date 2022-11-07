@@ -27,6 +27,17 @@ class UserCollection {
   }
 
   /**
+   * Get all the users not including the current session user in the database
+   *
+   * @param {string} userId - The userId of the user
+   * @return {Promise<HydratedDocument<User>[]>} - An array of all of the users
+   */
+  static async findAllExceptUser(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<User>>> {
+    const users = await UserModel.find({});
+    return users.filter(user => user._id.toString() !== userId);
+  }
+
+  /**
    * Find a user by userId.
    *
    * @param {string} userId - The userId of the user to find

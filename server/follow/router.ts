@@ -7,6 +7,7 @@ import * as userValidator from '../user/middleware';
 import * as followValidator from '../follow/middleware';
 import * as util from './util';
 import { constructFreetResponse } from '../freet/util';
+import { constructUserResponse } from '../user/util';
 
 const router = express.Router();
 
@@ -32,6 +33,27 @@ router.get(
             message: 'Look at all your followings!',
             following: response
         });
+    }
+);
+
+
+/**
+ * Get all the users that user could follow
+ *
+ * @name GET /api/follows/notfollowing
+ *
+ * @return {UserResponse[]} - A list of all the users that user could follow
+ *                      
+ */
+router.get(
+    '/notfollowing',
+    async (req: Request, res: Response) => {
+        const otherUsers = await UserCollection.findAllExceptUser(req.session.userId);
+        const following = await FollowCollection.findAllFollowing(req.session.userId);
+        const response = otherUsers.filter(user => {
+            return !following.map(follow => follow.followee._id.toString()).includes(user._id.toString());
+        }).map(constructUserResponse);
+        res.status(200).json(response);
     }
 );
 

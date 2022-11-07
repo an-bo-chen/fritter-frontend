@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import FreetsPage from './components/Freet/FreetsPage.vue';
+import FollowPage from './components/Follow/FollowPage.vue';
+import FollowingPage from './components/Follow/viewFollowingPage.vue';
+import FollowersPage from './components/Follow/viewFollowersPage.vue';
 import ProfilePage from './components/Profile/ProfilePage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
@@ -10,7 +13,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {path: '/', name: 'Home', component: FreetsPage},
+  {path: '/follow', name: 'Follow', component: FollowPage},
   {path: '/profile', name: 'Profile', component: ProfilePage},
+  {path: '/profile/following', name: 'Following', component: FollowingPage},
+  {path: '/profile/followers', name: 'Followers', component: FollowersPage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '*', name: 'Not Found', component: NotFound}
@@ -28,8 +34,8 @@ router.beforeEach((to, from, next) => {
       return;
     }
 
-    if ((to.name === 'Account' || to.name === 'Profile') && !router.app.$store.state.username) {
-      next({name: 'Login'}); // Go to Login page if user navigates to Account or Profile and are not signed in
+    if ((to.name === 'Account' || to.name === 'Profile' || to.name === 'Follow' || to.name === 'Following' || to.name === 'Followers') && !router.app.$store.state.username) {
+      next({name: 'Login'}); // Go to Login page if user navigates to Account or Profile or Follow and are not signed in
       return;
     }
   }
