@@ -1,27 +1,58 @@
-<!-- Form for getting freets (all, from user) (inline style) -->
 <template>
-    <button
-        @click="toggle"
-    >
-    Change Mode!
-    </button>
+    <div>
+        <button 
+            @click="toggle"
+        >
+            Change Mode!
+        </button>
+        <section class="alerts">
+            <article 
+                v-for="(status, alert, index) in alerts" 
+                :key="index" 
+                :class="status"
+            >
+                <p>{{ alert }}</p>
+            </article>
+        </section>
+    </div>
 </template>
 <script>
 import InlineForm from '@/components/common/InlineForm.vue';
 
 export default {
-  name: 'ToggleAnonymousMode',
-  methods: {
-    async toggle() {      
-        const r = await fetch(`/api/anonymousMode/${this.$store.state.username}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                mode: !this.$store.state.isAnonymousMode
-            }),
-            headers: {'Content-Type': 'application/json'}
-        }).then(res => res.json())
-        this.$store.commit('setMode', r.mode.isAnonymousMode);
+    name: 'ToggleAnonymousMode',
+    data() {
+        return {
+            alerts: {}
+        };
+    },
+    methods: {
+        async toggle() {            
+            const options = {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    mode: !this.$store.state.isAnonymousMode
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            };
+
+            try {
+                const r = await fetch(`/api/anonymousMode/${this.$store.state.username}`, options)
+                const res = await r.json();
+                if (!r.ok) {
+                    throw new Error(res.error);
+                }
+                
+                this.$store.commit('setMode', res.mode.isAnonymousMode);
+
+                this.$store.commit('alert', {
+                    message: 'Successfully switched modes!', status: 'success'
+                });
+            } catch (e) {
+                this.$set(this.alerts, e, 'error');
+                setTimeout(() => this.$delete(this.alerts, e), 3000);
+            }            
+        }
     }
-  }
 };
 </script>
