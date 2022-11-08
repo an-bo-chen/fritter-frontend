@@ -53,10 +53,25 @@ form {
 input {
     padding: 0 5px;
     min-width: 200px;
+    border-radius: 14px;
+    border: none;
+    border:solid 1px #ccc;
     font-family: inherit;
 }
 
 button {
+  background-color: white;
+  color: black;
+  position: relative;
+  border-radius: 14px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   font-family: inherit;
+  height: 2em;
+}
+
+button:hover {
+  background-color: lightgray;
+  color: black;
 }
 </style>
