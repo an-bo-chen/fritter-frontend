@@ -3,10 +3,21 @@
 <template>
   <main>
     <section v-if="$store.state.username">
-      <header>
-        <h2>Welcome @{{ $store.state.username }}</h2>
-      </header>
-      <CreateFreetForm />
+      <section
+        v-if="$store.state.isAnonymousMode"
+      >
+        <header>
+          <h2>Welcome @anonymous_user</h2>
+        </header>
+      </section>
+      <section
+        v-else
+      >
+        <header>
+          <h2>Welcome @{{ $store.state.username }}</h2>
+        </header>
+        <CreateFreetForm />
+      </section>
     </section>
     <section v-else>
       <header>

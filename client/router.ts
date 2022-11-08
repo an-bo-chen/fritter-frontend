@@ -4,8 +4,8 @@ import HomePage from './components/Freet/HomePage.vue';
 import FeedPage from './components/Freet/FeedPage.vue';
 import AnonymousFreetsPage from './components/AnonymousFreet/AnonymousFreetsPage.vue';
 import FollowPage from './components/Follow/FollowPage.vue';
-import FollowingPage from './components/Follow/ViewFollowingPage.vue';
-import FollowersPage from './components/Follow/ViewFollowersPage.vue';
+import FollowingPage from './components/Follow/viewFollowingPage.vue';
+import FollowersPage from './components/Follow/viewFollowersPage.vue';
 import ProfilePage from './components/Profile/ProfilePage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
@@ -17,7 +17,7 @@ const routes = [
   {path: '/', name: 'Home', component: HomePage},
   {path: '/feed', name: 'Explore', component: FeedPage},
   {path: '/follow', name: 'Follow', component: FollowPage},
-  {path: '/anonymousFreets', name: 'Test', component: AnonymousFreetsPage},
+  {path: '/anonymousFreets', name: 'Anonymous', component: AnonymousFreetsPage},
   {path: '/profile', name: 'Profile', component: ProfilePage},
   {path: '/profile/following', name: 'Following', component: FollowingPage},
   {path: '/profile/followers', name: 'Followers', component: FollowersPage},
@@ -38,8 +38,12 @@ router.beforeEach((to, from, next) => {
       return;
     }
 
-    if ((to.name === 'Account' || to.name === 'Profile' || to.name === 'Follow' || to.name === 'Following' || to.name === 'Followers') && !router.app.$store.state.username) {
-      next({name: 'Login'}); // Go to Login page if user navigates to Account or Profile or Follow and are not signed in
+    const toLoggedInPages = (
+      to.name === 'Account' || to.name === 'Explore' || to.name === 'Anonymous' || to.name === 'Profile' || to.name === 'Follow' || to.name === 'Following' || to.name === 'Followers' 
+    );
+
+    if (toLoggedInPages && !router.app.$store.state.username) {
+      next({name: 'Login'}); // Go to Login page if user navigates to one of logged in pages and are not signed in
       return;
     }
   }

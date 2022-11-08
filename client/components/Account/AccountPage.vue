@@ -4,7 +4,12 @@
 <template>
   <main>
     <section>
-      <header>
+      <header
+        v-if="$store.state.isAnonymousMode"
+      >
+      <h2>Account settings for @anonymous_user</h2>
+      </header>
+      <header v-else>
         <h2>Account settings for @{{ $store.state.username }}</h2>
       </header>
       <ChangeUsernameForm />
