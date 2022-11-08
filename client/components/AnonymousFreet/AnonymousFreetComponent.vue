@@ -173,7 +173,7 @@ export default {
 @import url('https://fonts.cdnfonts.com/css/chirp-2');
 
 .freet {
-    border: 1px solid #111;
+    border:solid 1px lightgray;
     border-style: solid;
     border-radius: 15px;
     margin-bottom: 1em;
@@ -184,9 +184,10 @@ export default {
   background-color: white;
   color: black;
   position: relative;
+  border:solid 1px lightgray;
   border-radius: 14px;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
   font-family: inherit;
   height: 2em;
 }

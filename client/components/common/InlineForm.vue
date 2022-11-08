@@ -55,7 +55,7 @@ input {
     min-width: 200px;
     border-radius: 14px;
     border: none;
-    border:solid 1px #ccc;
+    border:solid 1px lightgray;
     font-family: inherit;
 }
 
@@ -63,6 +63,7 @@ button {
   background-color: white;
   color: black;
   position: relative;
+  border:solid 1px lightgray;
   border-radius: 14px;
   margin-left: 0.5em;
   margin-right: 0.5em;

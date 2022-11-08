@@ -33,7 +33,7 @@
     <button
       type="submit"
     >
-      {{ title }}
+      {{ button }}
     </button>
     <section class="alerts">
       <article
@@ -155,8 +155,5 @@ form h3 {
 textarea {
    font-family: inherit;
    font-size: inherit;
-}
-button {
-  font-family: inherit;
 }
 </style>
