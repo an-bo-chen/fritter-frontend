@@ -22,8 +22,8 @@
       </router-link>
       <router-link 
         v-if="$store.state.username"
-        to="/anonymousFreets">
-        Anonymous Freets
+        to="/anonymous-feed">
+        Anonymous Feed
       </router-link>
       <router-link 
         v-if="$store.state.username"

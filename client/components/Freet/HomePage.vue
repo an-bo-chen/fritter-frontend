@@ -14,9 +14,9 @@
         v-else
       >
         <header>
-          <h2>Welcome @{{ $store.state.username }}</h2>
+          <h2>Welcome @{{ $store.state.username }}!</h2>
         </header>
-        <CreateFreetForm />
+        <CreateFreetForm/>
       </section>
     </section>
     <section v-else>
@@ -36,7 +36,7 @@
       <header>
         <div class="left">
           <h2>
-            Viewing all freets
+            Viewing All Freets
             <span v-if="$store.state.filter">
               by @{{ $store.state.filter }}
             </span>
@@ -63,7 +63,7 @@
       <article
         v-else
       >
-        <h3>No freets found.</h3>
+        <h3>No freets found. Be the first to share a freet!</h3>
       </article>
     </section>
   </main>

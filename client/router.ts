@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from './components/Freet/HomePage.vue';
 import FeedPage from './components/Freet/FeedPage.vue';
-import AnonymousFreetsPage from './components/AnonymousFreet/AnonymousFreetsPage.vue';
+import AnonymousFeedPage from './components/AnonymousFreet/AnonymousFeedPage.vue';
 import FollowPage from './components/Follow/FollowPage.vue';
 import FollowingPage from './components/Follow/viewFollowingPage.vue';
 import FollowersPage from './components/Follow/viewFollowersPage.vue';
@@ -15,9 +15,9 @@ Vue.use(VueRouter);
 
 const routes = [
   {path: '/', name: 'Home', component: HomePage},
-  {path: '/feed', name: 'Explore', component: FeedPage},
+  {path: '/feed', name: 'Feed', component: FeedPage},
   {path: '/follow', name: 'Follow', component: FollowPage},
-  {path: '/anonymousFreets', name: 'Anonymous', component: AnonymousFreetsPage},
+  {path: '/anonymous-feed', name: 'Anonymous', component: AnonymousFeedPage},
   {path: '/profile', name: 'Profile', component: ProfilePage},
   {path: '/profile/following', name: 'Following', component: FollowingPage},
   {path: '/profile/followers', name: 'Followers', component: FollowersPage},
@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
     }
 
     const toLoggedInPages = (
-      to.name === 'Account' || to.name === 'Explore' || to.name === 'Anonymous' || to.name === 'Profile' || to.name === 'Follow' || to.name === 'Following' || to.name === 'Followers' 
+      to.name === 'Account' || to.name === 'Feed' || to.name === 'Anonymous' || to.name === 'Profile' || to.name === 'Follow' || to.name === 'Following' || to.name === 'Followers' 
     );
 
     if (toLoggedInPages && !router.app.$store.state.username) {

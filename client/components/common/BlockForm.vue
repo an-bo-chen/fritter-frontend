@@ -32,8 +32,15 @@
     </article>
     <button
       type="submit"
+      v-if="button"
     >
       {{ button }}
+    </button>
+    <button
+      type="submit"
+      v-else
+    >
+      {{ title }}
     </button>
     <section class="alerts">
       <article

@@ -2,16 +2,16 @@
 
 <template>
   <main>
-    <section>
-      <header>
-        <h2>Check out what your followers saying on Fritter!</h2>
-      </header>
-    </section>
+    <header>
+      <h2>
+        Following Feed
+      </h2>
+    </header>
     <section>
       <header>
         <div class="left">
           <h2>
-            Viewing Feed
+            Viewing Following Freets
             <span v-if="$store.state.feedFilter">
               by @{{ $store.state.feedFilter }}
             </span>
@@ -38,7 +38,7 @@
       <article
         v-else
       >
-        <h3>No freets in feed. Check out the 
+        <h3>Don't see any freets in your feed? Check out the 
           <router-link to="/follow">
             follow page!
           </router-link>
