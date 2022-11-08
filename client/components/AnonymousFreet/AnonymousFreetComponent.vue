@@ -9,6 +9,24 @@
       <h3 class="author">
         @anonymous_user
       </h3>
+    </header>
+    <textarea
+      v-if="editing"
+      class="content"
+      :value="draft"
+      @input="draft = $event.target.value"
+    />
+    <p
+      v-else
+      class="content"
+    >
+      {{ anonymousFreet.content }}
+    </p>
+    <p class="info">
+      Posted at {{ anonymousFreet.dateModified }}
+      <i v-if="anonymousFreet.dateModified !== anonymousFreet.dateCreated">(edited)</i>
+    </p>
+    <section>
       <div
         v-if="$store.state.anonymousUserId === anonymousFreet.anonymousAuthorId"
         class="actions"
@@ -35,23 +53,7 @@
           🗑️ Delete
         </button>
       </div>
-    </header>
-    <textarea
-      v-if="editing"
-      class="content"
-      :value="draft"
-      @input="draft = $event.target.value"
-    />
-    <p
-      v-else
-      class="content"
-    >
-      {{ anonymousFreet.content }}
-    </p>
-    <p class="info">
-      Posted at {{ anonymousFreet.dateModified }}
-      <i v-if="anonymousFreet.dateModified !== anonymousFreet.dateCreated">(edited)</i>
-    </p>
+    </section>
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
@@ -168,9 +170,38 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.cdnfonts.com/css/chirp-2');
+
 .freet {
     border: 1px solid #111;
-    padding: 20px;
+    border-style: solid;
+    border-radius: 15px;
+    margin-bottom: 1em;
+    padding: 1em;
     position: relative;
+}
+.actions button {
+  background-color: white;
+  color: black;
+  position: relative;
+  border-radius: 14px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  font-family: inherit;
+  height: 2em;
+}
+.actions button:hover {
+  background-color: lightgray;
+  color: black;
+}
+.content {
+  font-weight: bold;
+  width: 100em;
+}
+
+textarea {
+    resize: none;
+    max-width: 96.5em;
+    font-family: inherit;
 }
 </style>

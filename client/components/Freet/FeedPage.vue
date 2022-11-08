@@ -11,7 +11,7 @@
       <header>
         <div class="left">
           <h2>
-            Viewing all freets
+            Viewing Feed
             <span v-if="$store.state.feedFilter">
               by @{{ $store.state.feedFilter }}
             </span>
@@ -21,7 +21,7 @@
           <GetFeedForm
             ref="getFeedForm"
             value="author"
-            placeholder="🔍 Filter by author (optional)"
+            placeholder="🔍 Filter by following (optional)"
             button="🔄 Get freets"
           />
         </div>

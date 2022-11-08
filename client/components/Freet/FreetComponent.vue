@@ -26,7 +26,7 @@
       Posted at {{ freet.dateModified }}
       <i v-if="freet.dateModified !== freet.dateCreated">(edited)</i>
     </p>
-    <section class="bottom">
+    <section>
       <div
         v-if="$store.state.username === freet.author"
         class="actions"
@@ -184,7 +184,7 @@ export default {
   background-color: white;
   color: black;
   position: relative;
-  border-radius: 18px;
+  border-radius: 14px;
   margin-left: 0.5em;
   margin-right: 0.5em;
   font-family: inherit;
