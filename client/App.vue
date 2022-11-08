@@ -45,6 +45,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.cdnfonts.com/css/chirp-2');
+
 * {
   box-sizing: border-box;
 }
@@ -60,6 +62,7 @@ body {
 
 main {
   padding: 0 5em 5em;
+  font-family: "Chirp";
 }
 
 .alerts {

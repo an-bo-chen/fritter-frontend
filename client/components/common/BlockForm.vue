@@ -156,4 +156,7 @@ textarea {
    font-family: inherit;
    font-size: inherit;
 }
+button {
+  font-family: inherit;
+}
 </style>
