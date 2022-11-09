@@ -22,11 +22,11 @@
                     :username="user.username"
                 />
             </section>
-            <article
+            <section
                 v-else
             >
-                Congrats! You followed everyone on Fritter!
-            </article>
+                <p>Congrats! You followed everyone on Fritter!</p>
+            </section>
         </section>
     </main>
 </template>
@@ -48,3 +48,26 @@ export default {
   }
 };  
 </script>
+
+<style scoped>
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+header, header > * {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    margin-right: 10px;
+}
+
+section .scrollbox {
+  flex: 1 0 50vh;
+  padding: 3%;
+  overflow-y: scroll;
+}
+</style>

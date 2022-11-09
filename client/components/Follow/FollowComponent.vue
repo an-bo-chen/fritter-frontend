@@ -1,22 +1,26 @@
 <template>
-    <article>
+    <article
+        class="follow"
+    >
         <header>
-            <h1>
+            <h3>
                 @{{ username }}
-                <button
-                    v-if="isFollowing"
-                    @click="unfollow"
-                >
-                    Unfollow
-                </button>
-                <button
-                    v-else
-                    @click="follow"
-                >
-                    Follow
-                </button>
-            </h1>
+            </h3>
         </header>
+        <section>
+            <button
+                v-if="isFollowing"
+                @click="unfollow"
+            >
+                Unfollow
+            </button>
+            <button
+                v-else
+                @click="follow"
+            >
+                Follow
+            </button>
+        </section>
     </article>
 </template>
 
@@ -105,3 +109,32 @@ export default {
 };
 
 </script>
+
+<style scoped>
+.follow {
+    border:solid 1px lightgray;
+    border-style: solid;
+    border-radius: 15px;
+    margin-bottom: 1em;
+    padding: 1em;
+    position: relative;
+}
+
+button {
+  background-color: white;
+  color: black;
+  position: relative;
+  border:solid 1px lightgray;
+  border-radius: 14px;
+  margin-left: 0.25em;
+  font-family: inherit;
+  font-size: large;
+  font-weight: bold;
+  height: 2em;
+}
+
+ button:hover {
+  background-color: lightgray;
+  color: black;
+}
+</style>
