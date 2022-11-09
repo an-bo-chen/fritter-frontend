@@ -125,6 +125,7 @@ button {
   color: black;
   position: relative;
   border:solid 1px lightgray;
+  padding: 0px 10px;
   border-radius: 14px;
   margin-left: 0.25em;
   font-family: inherit;

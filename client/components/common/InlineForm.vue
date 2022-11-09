@@ -52,7 +52,8 @@ form {
 
 input {
     padding: 0 5px;
-    min-width: 250px;
+    min-width: fit-content;
+    padding: 0px 10px;
     border-radius: 14px;
     border: none;
     border:solid 1px lightgray;

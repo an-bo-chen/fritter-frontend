@@ -48,7 +48,7 @@
           <GetFreetsForm
             ref="getFreetsForm"
             value="author"
-            placeholder="🔍 Filter by author (optional)"
+            placeholder="🔍 Filter by author"
             button="🔄 Get freets"
           />
         </div>

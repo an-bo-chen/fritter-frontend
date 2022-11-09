@@ -21,7 +21,7 @@
           <GetFeedForm
             ref="getFeedForm"
             value="author"
-            placeholder="🔍 Filter by following (optional)"
+            placeholder="🔍 Filter by following"
             button="🔄 Get freets"
           />
         </div>

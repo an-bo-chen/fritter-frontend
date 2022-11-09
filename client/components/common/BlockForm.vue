@@ -132,35 +132,51 @@ export default {
 
 <style scoped>
 form {
-  border: 1px solid #111;
-  padding: 0.5rem;
+  border:solid 1px #ccc;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 1em;
   position: relative;
 }
-
 article > div {
   display: flex;
   flex-direction: column;
 }
-
 form > article p {
   margin: 0;
 }
-
 form h3,
 form > * {
   margin: 0.3em 0;
 }
-
 form h3 {
   margin-top: 0;
 }
 
+button {
+  background-color: #1DA1F2;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  width: fit-content;
+  padding: 0px 10px;
+  height: 2em;
+  font-family: inherit;
+  font-size: medium;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #1581c4;
+}
 textarea {
-   font-family: inherit;
-   font-size: inherit;
+  border:solid 1px #ccc;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 </style>

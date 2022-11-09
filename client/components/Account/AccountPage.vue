@@ -12,15 +12,23 @@
       <header v-else>
         <h2>Account settings for @{{ $store.state.username }}</h2>
       </header>
-      <ChangeUsernameForm />
-      <ChangePasswordForm />
+      <ChangeUsernameForm 
+        button="Change Username"
+      />
+      <ChangePasswordForm
+        button="Change Password"
+      />
     </section>
     <section>
       <header>
         <h2>Account management</h2>
       </header>
-      <LogoutForm />
-      <DeleteAccountForm />
+      <LogoutForm 
+        button="Sign Out"
+      />
+      <DeleteAccountForm 
+        button="Delete Account"
+      />
     </section>
   </main>
 </template>
