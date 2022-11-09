@@ -52,10 +52,11 @@ form {
 
 input {
     padding: 0 5px;
-    min-width: 200px;
+    min-width: 250px;
     border-radius: 14px;
     border: none;
     border:solid 1px lightgray;
+    font-size: medium;
     font-family: inherit;
 }
 
@@ -68,6 +69,8 @@ button {
   margin-left: 0.5em;
   margin-right: 0.5em;
   font-family: inherit;
+  font-size: medium;
+  font-weight: bold;
   height: 2em;
 }
 

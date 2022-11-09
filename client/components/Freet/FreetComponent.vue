@@ -170,7 +170,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.cdnfonts.com/css/chirp-2');
 
 .freet {
     border:solid 1px lightgray;
@@ -189,6 +188,8 @@ export default {
   margin-left: 0.25em;
   margin-right: 0.25em;
   font-family: inherit;
+  font-size: medium;
+  font-weight: bold;
   height: 2em;
 }
 

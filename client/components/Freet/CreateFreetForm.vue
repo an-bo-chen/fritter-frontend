@@ -15,7 +15,6 @@ export default {
         {id: 'content', label: 'Content', value: ''}
       ],
       title: 'Post Your Thoughts!',
-      button: 'Freet',
       refreshFreets: true,
       callback: () => {
         const message = 'Successfully created a freet!';
@@ -62,6 +61,7 @@ button {
   width: 5em;
   height: 2em;
   font-family: inherit;
+  font-size: medium;
   font-weight: bold;
 }
 

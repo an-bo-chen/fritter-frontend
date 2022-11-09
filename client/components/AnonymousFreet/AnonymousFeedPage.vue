@@ -6,7 +6,9 @@
       <header>
         <h2>Anonymous Feed</h2>
       </header>
-      <CreateAnonymousFreetForm/>
+      <CreateAnonymousFreetForm
+        button="Anonymously Freet"
+      />
     </section>
     <section>
       <header>

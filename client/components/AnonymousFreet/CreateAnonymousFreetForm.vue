@@ -15,7 +15,6 @@ export default {
         {id: 'content', label: 'Content', value: ''}
       ],
       title: 'Post Your Private Thoughts!',
-      button: 'Anonymously Freet',
       refreshAnonymousFreets: true,
       callback: () => {
         const message = 'Successfully created an anonmous freet!';
@@ -62,6 +61,7 @@ button {
   width: 12em;
   height: 2em;
   font-family: inherit;
+  font-size: medium;
   font-weight: bold;
 }
 

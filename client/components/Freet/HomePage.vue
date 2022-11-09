@@ -16,7 +16,9 @@
         <header>
           <h2>Welcome @{{ $store.state.username }}!</h2>
         </header>
-        <CreateFreetForm/>
+        <CreateFreetForm
+          button="Freet"
+        />
       </section>
     </section>
     <section v-else>

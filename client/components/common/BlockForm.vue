@@ -32,15 +32,8 @@
     </article>
     <button
       type="submit"
-      v-if="button"
     >
       {{ button }}
-    </button>
-    <button
-      type="submit"
-      v-else
-    >
-      {{ title }}
     </button>
     <section class="alerts">
       <article
@@ -58,6 +51,12 @@
 
 export default {
   name: 'BlockForm',
+  props: {
+    button: {
+      type: String,
+      default: 'Submit'
+    }
+  },
   data() {
     /**
      * Options for submitting this form.
