@@ -27,10 +27,13 @@
       </header>
       <article>
         <h3>
-          <router-link to="/login">
-            Sign in
+          <router-link
+            to="/login"
+            class="routerLink"
+          >
+            Log in 
           </router-link>
-          to create, edit, and delete freets.
+          to participate!
         </h3>
       </article>
     </section>
@@ -106,4 +109,7 @@ section .scrollbox {
   padding: 3%;
   overflow-y: scroll;
 }
+.routerLink {
+     text-decoration: none;
+ }
 </style>

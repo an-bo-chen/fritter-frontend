@@ -4,27 +4,27 @@
 <template>
   <main>
     <header class="back">
-        <router-link
-            to="/"
-            class="backLink"
-        >
-            ← Back to Home
-        </router-link>
+      <router-link
+        to="/"
+        class="backLink"
+      >
+        ← Back to Home
+      </router-link>
     </header>
     <section>
       <header>
-        <h2>Sign in to Fritter</h2>
+        <h2>Join Fritter Today</h2>
       </header>
-      <LoginForm 
-        button="Sign In"
+      <RegisterForm 
+        button="Create Account"
       />
       <h4>
-        Don't have an account?
+        Have an account already?
         <router-link 
-          to="/signup"
+          to="/login"
           class="routerLink"
         >
-          Sign up!
+          Log in!
         </router-link>
       </h4>
     </section>
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import LoginForm from '@/components/Login/LoginForm.vue';
+import RegisterForm from '@/components/Login/RegisterForm.vue';
 
 export default {
-  name: 'LoginPage',
+  name: 'SignupPage',
   components: {
-    LoginForm
+    RegisterForm,
   }
 };
 </script>

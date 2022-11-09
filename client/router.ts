@@ -8,6 +8,7 @@ import FollowingPage from './components/Follow/viewFollowingPage.vue';
 import FollowersPage from './components/Follow/viewFollowersPage.vue';
 import ProfilePage from './components/Profile/ProfilePage.vue';
 import AccountPage from './components/Account/AccountPage.vue';
+import SignupPage from './components/Login/SignupPage.vue';
 import LoginPage from './components/Login/LoginPage.vue';
 import NotFound from './NotFound.vue';
 
@@ -23,6 +24,7 @@ const routes = [
   {path: '/profile/followers', name: 'Followers', component: FollowersPage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
+  {path: '/signup', name: 'Signup', component: SignupPage},
   {path: '*', name: 'Not Found', component: NotFound}
 ];
 
@@ -33,7 +35,7 @@ const router = new VueRouter({routes});
  */
 router.beforeEach((to, from, next) => {
   if (router.app.$store) {
-    if (to.name === 'Login' && router.app.$store.state.username) {
+    if ((to.name === 'Login' || to.name === 'Signup') && router.app.$store.state.username) {
       next({name: 'Account'}); // Go to Account page if user navigates to Login and are signed in
       return;
     }
