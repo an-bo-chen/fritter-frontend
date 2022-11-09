@@ -1,10 +1,14 @@
 <template>
     <main>
-        <router-link
-            to="/profile"
-        >
-            ← Back to Profile
-        </router-link>
+        <header class="back">
+            <router-link
+                to="/profile"
+                class="backLink"
+            >
+                ← Back to Profile
+            </router-link>
+        </header>
+        
         <section>
             <header>
                 <h2>Followers</h2>
@@ -23,7 +27,10 @@
                 v-else
             >
                 You currently have no followers. Share a new 
-                <router-link to="/">
+                <router-link 
+                    to="/"
+                    class="routerLink"
+                >
                     freet
                 </router-link>
                 and get noticed!
@@ -41,3 +48,17 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.back {
+    margin-top: 1em;
+}
+.backLink {
+    text-decoration: none;
+    color: black;
+    margin-top: 1em;
+ }
+ .routerLink {
+     text-decoration: none;
+ }
+</style>

@@ -46,6 +46,7 @@ export default {
 </script>
 
 <style>
+/* Chirp font family obtained at https://www.cdnfonts.com/chirp-2.font */
 @import url('https://fonts.cdnfonts.com/css/chirp-2');
 
 * {

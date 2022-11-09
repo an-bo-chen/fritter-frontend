@@ -20,11 +20,13 @@
             <section v-if="!$store.state.isAnonymousMode">
                 <router-link 
                     to="/profile/following"
+                    class="followLink"
                 >
                     {{$store.state.following.length}} Following
                 </router-link>
                 <router-link 
                     to="/profile/followers"
+                    class="followLink"
                 >
                     {{$store.state.followers.length}} Followers
                 </router-link>
@@ -58,7 +60,10 @@
                 >
                     <h3>
                         Share a new 
-                        <router-link to="/anonymous-feed">
+                        <router-link 
+                            to="/anonymous-feed"
+                            class="routerLink"
+                        >
                             anonymous freet
                         </router-link>
                         !
@@ -84,7 +89,10 @@
             >
                 <h3>
                     Share a new 
-                    <router-link to="/">
+                    <router-link 
+                        to="/"
+                        class="routerLink"
+                    >
                         freet
                     </router-link>
                     !
@@ -192,5 +200,12 @@ export default {
     width: 70em;
     height: 15em;
 }
-
+.routerLink {
+     text-decoration: none;
+ }
+ .followLink {
+    text-decoration: none;
+    color: gray;
+    padding: 0px 5px;
+ }
 </style>

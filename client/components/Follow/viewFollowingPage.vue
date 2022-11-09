@@ -1,10 +1,13 @@
 <template>
     <main>
-        <router-link
-            to="/profile"
-        >
-            ← Back to Profile
-        </router-link>
+        <header class="back">
+            <router-link
+                to="/profile"
+                class="backLink"
+            >
+                ← Back to Profile
+            </router-link>
+        </header>
         <section>
             <header>
                 <h2>Following</h2>
@@ -23,7 +26,10 @@
                 v-else
             >
                 You currently are not following anyone. Check out the 
-                <router-link to="/follow">
+                <router-link 
+                    to="/follow"
+                    class="routerLink"
+                >
                     follow page!
                 </router-link>
             </article>
@@ -40,3 +46,17 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.back {
+    margin-top: 1em;
+}
+.backLink {
+    text-decoration: none;
+    color: black;
+    margin-top: 1em;
+ }
+ .routerLink {
+     text-decoration: none;
+ }
+</style>

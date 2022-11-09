@@ -39,7 +39,10 @@
         v-else
       >
         <h3>Don't see any freets in your feed? Check out the 
-          <router-link to="/follow">
+          <router-link 
+            to="/follow"
+            class="routerLink"
+          >
             follow page!
           </router-link>
         </h3>
@@ -82,4 +85,7 @@ section .scrollbox {
   padding: 3%;
   overflow-y: scroll;
 }
+.routerLink {
+     text-decoration: none;
+ }
 </style>

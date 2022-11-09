@@ -11,43 +11,62 @@
       </h1>
     </div>
     <div class="right">
-      <router-link to="/">
-        Home
-      </router-link>
-      <router-link 
-        v-if="$store.state.username"
-        to="/feed"
-      >
-        Feed
-      </router-link>
-      <router-link 
-        v-if="$store.state.username"
-        to="/anonymous-feed">
-        Anonymous Feed
-      </router-link>
-      <router-link 
-        v-if="$store.state.username"
-        to="/follow">
-        Follow
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/profile"
-      >
-        Profile
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/account"
-      >
-        Account
-      </router-link>
-      <router-link
-        v-else
-        to="/login"
-      >
-        Login
-      </router-link>
+      <button>
+        <router-link 
+          to="/"
+          class="link"
+        >
+          🏠 Home
+        </router-link>
+      </button>
+      <button v-if="$store.state.username">
+        <router-link 
+          to="/feed"
+          class="link"
+        >
+          📰 Feed
+        </router-link>
+      </button>
+      <button v-if="$store.state.username">
+        <router-link 
+          to="/anonymous-feed"
+          class="link"
+        >
+          📝Anonymous Feed
+        </router-link>
+      </button>
+      <button v-if="$store.state.username">
+        <router-link 
+          to="/follow"
+          class="link"
+        >
+          🔎 Follow
+        </router-link>
+      </button>
+      <button v-if="$store.state.username">
+        <router-link
+          to="/profile"
+          class="link"
+        >
+          👤 Profile
+        </router-link>
+      </button>
+      <button v-if="$store.state.username">
+        <router-link
+          to="/account"
+          class="link"
+        >
+          🔒 Account
+        </router-link>
+      </button>
+      <button v-else>
+        <router-link
+          to="/login"
+          class="link"
+        >
+          🔓 Login
+        </router-link>
+      </button>
     </div>
     <section class="alerts">
       <article
@@ -64,7 +83,7 @@
 <style scoped>
 nav {
     padding: 1vw 2vw;
-    background-color: #ccc;
+    background-color: #1DA1F2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,5 +118,21 @@ img {
 
 .alerts {
     width: 25%;
+}
+button {
+  background-color: white;
+  padding: 0px 10px;
+  border-radius: 20px;
+  height: 2.5em;
+  border: 2px solid #1986ca;
+}
+button:hover {
+  background-color: lightgray;
+  color: black;
+}
+.link {
+  font-size: large;
+  color: black;
+  text-decoration: none;
 }
 </style>
