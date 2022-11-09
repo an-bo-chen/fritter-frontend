@@ -198,7 +198,7 @@ export default {
 }
 .content {
   font-weight: bold;
-  width: 100em;
+  width: 38em;
 }
 
 textarea {
