@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <section>
         <button 
             @click="toggle"
         >
-            Change Mode!
+            Change Mode
         </button>
         <section class="alerts">
             <article 
@@ -14,7 +14,7 @@
                 <p>{{ alert }}</p>
             </article>
         </section>
-    </div>
+    </section>
 </template>
 <script>
 import InlineForm from '@/components/common/InlineForm.vue';
@@ -56,3 +56,23 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+button {
+    background-color: white;
+    color: black;
+    position: relative;
+    border:solid 1px lightgray;
+    border-radius: 14px;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    font-family: inherit;
+    font-size: medium;
+    font-weight: bold;
+    height: 2em;
+}
+button:hover {
+    background-color: lightgray;
+    color: black;
+}
+</style>

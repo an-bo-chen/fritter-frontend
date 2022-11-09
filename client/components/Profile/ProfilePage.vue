@@ -1,38 +1,48 @@
 <template>
     <main>
         <section>
-            <header v-if="$store.state.isAnonymousMode">
-                <h2>@anonymous_user</h2>
-            </header>
-            <header v-else>
-                <h2>@{{$store.state.username}}</h2>
+            <header>
+                <h2>Profile</h2>
             </header>
         </section>
-        <section v-if="!$store.state.isAnonymousMode">
-            <router-link 
-                to="/profile/following"
-            >
-                {{$store.state.following.length}} Following
-            </router-link>
-            <router-link 
-                to="/profile/followers"
-            >
-                {{$store.state.followers.length}} Followers
-            </router-link>
-        </section>
-        <section>
-            <header v-if="$store.state.isAnonymousMode">
-                <h2>You are currently in Anonymous Mode</h2>
-            </header>
-            <header v-else>
-                <h2>You are currently in Public Mode</h2>
-            </header>
-            <ToggleAnonymousMode />
+        <section class="profile">
+            <section>
+                <header v-if="$store.state.isAnonymousMode">
+                    <h3>@anonymous_user</h3>
+                </header>
+                <header v-else>
+                    <h3>@{{$store.state.username}}</h3>
+                </header>
+                <header>
+                    <h4>Joined: {{ $store.state.dateJoined }}</h4>
+                </header>
+            </section>
+            <section v-if="!$store.state.isAnonymousMode">
+                <router-link 
+                    to="/profile/following"
+                >
+                    {{$store.state.following.length}} Following
+                </router-link>
+                <router-link 
+                    to="/profile/followers"
+                >
+                    {{$store.state.followers.length}} Followers
+                </router-link>
+            </section>
+            <section>
+                <header v-if="$store.state.isAnonymousMode">
+                    <h3>You are currently in Anonymous Mode</h3>
+                </header>
+                <header v-else>
+                    <h3>You are currently in Public Mode</h3>
+                </header>
+                <ToggleAnonymousMode />
+            </section>
         </section>
         <section
             v-if="$store.state.isAnonymousMode"
         >
-            <h2>Your Posts</h2>
+            <h2>Your Anonymous Freets</h2>
                 <section
                     v-if="anonymousFreets.length"
                 >
@@ -46,13 +56,19 @@
                 <article
                     v-else
                 >
-                    <h3>Create a new post!</h3>
+                    <h3>
+                        Share a new 
+                        <router-link to="/anonymous-feed">
+                            anonymous freet
+                        </router-link>
+                        !
+                    </h3>
                 </article>
         </section>
         <section 
             v-else
         >
-            <h2>Your Posts</h2>
+            <h2>Your Freets</h2>
             <section
                 v-if="freets.length"
             >
@@ -66,7 +82,13 @@
             <article
                 v-else
             >
-                <h3>Create a new post!</h3>
+                <h3>
+                    Share a new 
+                    <router-link to="/">
+                        freet
+                    </router-link>
+                    !
+                </h3>
             </article>
         </section>
     </main>
@@ -158,3 +180,17 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.profile {
+    border:solid 1px lightgray;
+    border-style: solid;
+    border-radius: 15px;
+    margin-bottom: 1em;
+    padding: 1em;
+    position: relative;
+    width: 70em;
+    height: 15em;
+}
+
+</style>

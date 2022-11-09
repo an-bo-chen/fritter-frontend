@@ -20,6 +20,7 @@ export default {
     }).then(res => res.json()).then(res => {
       const user = res.user;
       this.$store.commit('setUsername', user ? user.username : null);
+      this.$store.commit('setDateJoined', user ? user.dateJoined : null);
     });
 
     if (this.$store.state.username) {

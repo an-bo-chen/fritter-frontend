@@ -7,7 +7,7 @@
         </router-link>
         <section>
             <header>
-                <h2>Followers Page</h2>
+                <h2>Followers</h2>
             </header>
         </section>
         <section
@@ -22,7 +22,11 @@
             <article 
                 v-else
             >
-                You currently have no followers!
+                You currently have no followers. Share a new 
+                <router-link to="/">
+                    freet
+                </router-link>
+                and get noticed!
             </article>
     </main>
 </template>

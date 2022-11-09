@@ -46,6 +46,11 @@ router.beforeEach((to, from, next) => {
       next({name: 'Login'}); // Go to Login page if user navigates to one of logged in pages and are not signed in
       return;
     }
+
+    if ((to.name === 'Following' || to.name === 'Followers') && router.app.$store.state.isAnonymousMode) {
+      next({name: 'Profile'})
+      return;
+    }
   }
 
   next();

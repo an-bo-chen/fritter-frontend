@@ -7,7 +7,7 @@
         </router-link>
         <section>
             <header>
-                <h2>Following Page</h2>
+                <h2>Following</h2>
             </header>
         </section>
         <section
@@ -22,7 +22,10 @@
             <article 
                 v-else
             >
-                You currently are not following anyone!
+                You currently are not following anyone. Check out the 
+                <router-link to="/follow">
+                    follow page!
+                </router-link>
             </article>
     </main>
 </template>

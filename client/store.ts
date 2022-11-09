@@ -15,6 +15,7 @@ const store = new Vuex.Store({
     feedFilter: null, // Username to filter shown feed by (null = show all)
     feed: [], // Feed for the logged in user
     username: null, // Username of the logged in user
+    dateJoined: null, // Date joined of the logged in user
     anonymousUserId: null, // Id of the associated anonymous user
     following: [], // users that the logged in user is following
     followers: [], // users that follow the logged in user
@@ -38,6 +39,13 @@ const store = new Vuex.Store({
        * @param username - new username to set
        */
       state.username = username;
+    },
+    setDateJoined(state, date) {
+      /**
+       * Update the stored date joined to the specified one.
+       * @param date - new date to set
+       */
+      state.dateJoined = date;
     },
     updateFilter(state, filter) {
       /**
